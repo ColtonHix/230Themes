@@ -111,44 +111,74 @@
 								<h3>Perl is mainly an interpreted language!</h3>
 							</div>
 							<p>Perl is normally an interpreted language, although Perl 6 “Raku” is not. Perl binaries are usually already installed on most Linux/UNIX like system, it even exists on our web directory and onyx!
-								 Run <code>perl -v</code> to check the version installed. ActivePerl is one of the recommended methods of installation for any platform. It provides binaries for Perl and a set of modules. You can view the <a href='https://www.perl.org/get.html' target="_blank"><strong>official installation instructions here.</strong></a></p>
+								 Run <code>perl -v</code> to check the version installed. ActivePerl is one of the recommended methods of installation for any platform. It provides binaries for Perl and a set of modules. You can view the <a href='https://www.perl.org/get.html' target="_blank"><strong>official installation instructions here.</strong></a>
+							 </p><p>Perl does not have it’s own compiler, but Strawberry perl uses gcc.
+
+
+	ActivePerl exists for Windows/Mac/Linux, while Microsoft also has Strawberry Perl “A 100% Open Source Perl for Windows that is exactly the same as Perl everywhere else; this includes using modules from CPAN, without the need for binary packages.”
+<br>
+	The Perl interpreter can be installed on web servers (Apache) and database servers!
+<br>
+</p>
 								 <br><h1>Installing Perl</h1>
 						</div>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-md-4">
+
 						<h3>Windows</h3>
 						<div class="row">
-							<div class="col-md-6" style="border-right: solid black 1px;box-sizing:border-box"><h4 class="text-center" style="text-decoration:underline;color:#61c5ba">Binaries</h4>
+							<div class="col-md-6"><h4 class="text-center" style="text-decoration:underline;">Binaries</h4>
 							<p>ActiveState Perl ActiveState offers both a free community version and a commercially supported binary distribution of Perl for Win32 and Perl for Win64.</p>
+							<p>For Windows, it is recommended to install the Padre IDE which comes with Strawberry Perl interpreters (<a href="http://padre.perlide.org/" target="_blank">http://padre.perlide.org/</a>)</p>
+							<span class="btn-out"><a href="https://www.activestate.com/products/perl/downloads/" target="_blank"><span>ActivePerl Downloads</span></a></span>
+
+							<p style="margin-top:30px;">Alternatively, Strawberry Perl: A 100% Open Source Perl for Windows that is exactly the same as Perl.</p>
+							<span class="btn-out" style="margin-bottom: 30px !important"><a href="https://www.strawberryperl.com" target="_blank"><span>Strawberry Perl</span></a></span>
 						</div>
-							<div class="col-md-6"><h4 class="text-center" style="text-decoration:underline;color:#61c5ba">Source</h4>
-							<p></p>
+							<div class="col-md-6"><h4 class="text-center" style="text-decoration:underline;">Source (all)</h4>
+								<p>
+	Consider looking at <a href="https://metacpan.org/release/App-perlbrew/">App::perlbrew</a> to help compile and manage Perl from source.
+	</p>
+	<p>Find out more about the source code, development versions as well
+	  as current releases of the <a href="https://www.cpan.org/src/README.html">Perl source code</a>.
+	</p>
+	<p><a href="https://dev.perl.org/perl5/source.html">Latest
+	  under development source code</a>
+	</p>
+	<span class="btn-out"><a href="https://www.cpan.org/src/5.0/perl-5.30.1.tar.gz"><span>Download latest source (5.30.1)</span></a></span>
 						</div>
-						</div>					</div>
-					<div class="col-md-4">
-						<h3>Mac OS X</h3>
+						</div>
+
+						<h3 style="margin-top: 30px;">Mac OS X</h3>
 						<div class="row">
-							<div class="col-md-6" style="border-right: solid black 1px;box-sizing:border-box"><h4 class="text-center" style="text-decoration:underline;color:#61c5ba">Binaries</h4>
-							<p></p>
+							<div class="col-md-6"><h4 class="text-center" style="text-decoration:underline;">Binaries</h4>
+							<p>Mac OS X should already have Perl installed, run <code>perl -v</code> in the terminal to check the version installed. Binaries can still be downloaded from ActivePerl.</p>
+							<span class="btn-out"><a href="https://www.activestate.com/products/perl/downloads/" target="_blank"><span>ActivePerl Downloads</span></a></span>
+
+							<ol style="margin-top:30px;">
+								<li>Use the <a href="https://learn.perl.org/installing/osx_tools.html" target="_blank">Mac OS X Editors and Terminals</a></li>
+								<li>Install "Command Line Tools for Xcode", either directly or through Xcode, both available from <a href="https://developer.apple.com/downloads/" target="_blank">Apple Developer downloads</a> (free registration required). Xcode can also be installed through the App Store application.</li>
+								<li>Open the <em>Terminal.app</em> (found in Applications -> Utilities) and copy & paste the command below into it (then press the 'return' key):
+									<br><code>curl -L http://xrl.us/installperlosx | bash</code></li>
+									<li>Once this is finished (it takes several minutes), quit the Terminal app.</li>
+							</ol>
+
 						</div>
-							<div class="col-md-6"><h4 class="text-center" style="text-decoration:underline;color:#61c5ba">Source</h4>
-							<p></p>
 						</div>
-						</div>					</div>
-					<div class="col-md-4">
-						<h3>Linux/Unix</h3>
+
+						<h3 style="margin-top: 30px;">Linux/Unix</h3>
 						<div class="row">
-							<div class="col-md-6" style="border-right: solid black 1px;box-sizing:border-box"><h4 class="text-center" style="text-decoration:underline;color:#61c5ba">Binaries</h4>
-							<p></p>
+							<div class="col-md-6"><h4 class="text-center" style="text-decoration:underline;">Binaries</h4>
+								<p>Linux/Unix systems may already have Perl installed, run <code>perl -v</code> in the terminal to check the version installed. Binaries can still be downloaded from ActivePerl.</p>
+								<span class="btn-out"><a href="https://www.activestate.com/products/perl/downloads/" target="_blank"><span>ActivePerl Downloads</span></a></span>
+								<ol style="margin-top:30px;">
+									<li>For the below installation, you must have a compiler such as gcc already installed</li>
+										<li>Open the terminal and copy & paste the command below into it (then press the 'return' key):
+										<br><code>curl -L http://xrl.us/installperlnix | bash</code></li>
+								</ol>
 						</div>
-							<div class="col-md-6"><h4 class="text-center" style="text-decoration:underline;color:#61c5ba">Source</h4>
-							<p></p>
 						</div>
-						</div>
-					</div>
-				</div>
+
 			</div>
 		</div>
 
