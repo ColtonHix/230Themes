@@ -543,7 +543,7 @@ h1, h2, h3, h4, h5, h6, figure {
     height: 50px;
     display: table;
     margin: 0 auto;
-    background: #61c5ba; }
+    background: #0073a1; }
     .services .icon:before, .services .icon:after {
       position: absolute;
       left: 0;
@@ -555,14 +555,14 @@ h1, h2, h3, h4, h5, h6, figure {
       height: 0;
       border-style: solid;
       border-width: 0 50px 30px 50px;
-      border-color: transparent transparent #61c5ba transparent; }
+      border-color: transparent transparent #0073a1 transparent; }
     .services .icon:after {
       bottom: -30px;
       width: 0;
       height: 0;
       border-style: solid;
       border-width: 30px 50px 0 50px;
-      border-color: #61c5ba transparent transparent transparent; }
+      border-color: #0073a1 transparent transparent transparent; }
     .services .icon i {
       font-size: 30px;
       color: #fff;
@@ -678,10 +678,10 @@ h1, h2, h3, h4, h5, h6, figure {
     right: 10px;
     display: table;
     font-weight: 700;
-    color: #000;
+    color: #fff;
     width: 60px;
     height: 30px;
-    background: #FFC300; }
+    background: #61c5ba; }
     .classes .classes-img .price:before, .classes .classes-img .price:after {
       position: absolute;
       left: 0;
@@ -693,14 +693,14 @@ h1, h2, h3, h4, h5, h6, figure {
       height: 0;
       border-style: solid;
       border-width: 0 30px 18px 30px;
-      border-color: transparent transparent #FFC300 transparent; }
+      border-color: transparent transparent #61c5ba transparent; }
     .classes .classes-img .price:after {
       bottom: -18px;
       width: 0;
       height: 0;
       border-style: solid;
       border-width: 18px 30px 0 30px;
-      border-color: #FFC300 transparent transparent transparent; }
+      border-color: #61c5ba transparent transparent transparent; }
     .classes .classes-img .price small {
       font-weight: 400;
       display: table-cell;
