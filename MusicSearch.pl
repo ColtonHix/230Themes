@@ -21,22 +21,22 @@ sub searchType {
         my $title = <STDIN>;
         titleSearch($title);
     
-    } elseif ($searchParameter =~ m/time/) {
+    } elsif ($searchParameter =~ m/time/) {
         print "How long do you want the songs to be? : ";
         my $timeframe = <STDIN>;
         timeSearch($timeframe);
     
-    } elseif ($searchParameter =~ m/album/) {
+    } elsif ($searchParameter =~ m/album/) {
         print "What album are you searching for? : ";
         my $album = <STDIN>;
         albumSearch($album);
     
-    } elseif ($searchParameter =~ m/artist/) {
+    } elsif ($searchParameter =~ m/artist/) {
         print "What artist are you looking for? : ";
         my $artist = <STDIN>;
         artistSearch($artist);
     
-    } elseif ($searchParameter =~ m/genre/) {
+    } elsif ($searchParameter =~ m/genre/) {
         print "What genre are you looking for? : ";
         my $genre = <STDIN>;
         genreSearch($genre);
