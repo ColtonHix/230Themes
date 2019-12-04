@@ -7,7 +7,7 @@ use Text::CSV;
 #print "Please type a file name: ";
 #have a set file name not stdin
 #use a csv file type: song title | song length | artist | album 
-my $filename = $ARGV[0];
+my $filename = "your_top_songs_2017.csv";
 chomp $filename;
 
 #initializes csv module
@@ -80,19 +80,75 @@ sub titleSearch {
 }
 
 sub timeSearch {
-    print "time search";
+    my $time = lc shift;
+    chomp $time;
+    my $dummy = <FH>;
+    while (my $row = <FH>) {
+        if ($csv->parse($row)) {
+            my @vals = $csv->fields();
+            my $test = lc $vals[3];
+            chomp $test;
+            if($test <= $time) {
+                print "$row\n";
+            }
+        } else {
+            warn "Line could not be parsed: $row\n $.";
+        }
+    }
 }
 
 sub albumSearch {
-    
+    my $album = lc shift;
+    chomp $album;
+    my $dummy = <FH>;
+    while (my $row = <FH>) {
+        if ($csv->parse($row)) {
+            my @vals = $csv->fields();
+            my $test = lc $vals[2];
+            chomp $test;
+            if(index($test,$album) != -1) {
+                print "$row\n";
+            }
+        } else {
+            warn "Line could not be parsed: $row\n $.";
+        }
+    }
 }
 
 sub artistSearch {
-    
+    my $artist = lc shift;
+    chomp $artist;
+    my $dummy = <FH>;
+    while (my $row = <FH>) {
+        if ($csv->parse($row)) {
+            my @vals = $csv->fields();
+            my $test = lc $vals[1];
+            chomp $test;
+            if(index($test,$artist) != -1) {
+                print "$row\n";
+            }
+        } else {
+            warn "Line could not be parsed: $row\n $.";
+        }
+    }
 }
 
 sub genreSearch {
-    
+    my $genre = lc shift;
+    chomp $genre;
+    my $dummy = <FH>;
+    while (my $row = <FH>) {
+        if ($csv->parse($row)) {
+            my @vals = $csv->fields();
+            my $test = lc $vals[4];
+            chomp $test;
+            if(index($test,$genre) != -1) {
+                print "$row\n";
+            }
+        } else {
+            warn "Line could not be parsed: $row\n $.";
+        }
+    }
 }
    
 searchType();
