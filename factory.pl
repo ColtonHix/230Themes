@@ -1,6 +1,5 @@
 use strict;
 use warnings;
-#use lib "/home/orangenator99/";
 use lib ".";
 require bag;
 

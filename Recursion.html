@@ -3,28 +3,17 @@
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Perl vs. -----</title>
+	<title>Recursion Example</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
-	<meta name="author" content="" />
+    <meta name="author" content="" />
 
-  <!-- Facebook and Twitter integration -->
-	<meta property="og:title" content=""/>
-	<meta property="og:image" content=""/>
-	<meta property="og:url" content=""/>
-	<meta property="og:site_name" content=""/>
-	<meta property="og:description" content=""/>
-	<meta name="twitter:title" content="" />
-	<meta name="twitter:image" content="" />
-	<meta name="twitter:url" content="" />
-	<meta name="twitter:card" content="" />
-
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700" rel="stylesheet">
-	<link rel='icon' href='favicon.ico' type='image/x-icon'/ >
+    <link rel='icon' href='favicon.ico' type='image/x-icon'/ >
 
-	<!-- Animate.css -->
+    	<!-- Animate.css -->
 	<link rel="stylesheet" href="css/animate.css">
 	<!-- Icomoon Icon Fonts-->
 	<link rel="stylesheet" href="css/icomoon.css">
@@ -73,7 +62,7 @@
 								<li><a href="history.html">History</a></li>
 								<li><a href="compilers.html">Compilers</a></li>
 								<li><a href="docs.html">Docs</a></li>
-								<li class="active"><a href="comparison.html">Comparison to </a></li>
+								<li><a href="comparison.html">Comparison to </a></li>
 								<li class="btn-cta"><a href="examples.html"><span>Examples</span></a></li>
 							</ul>
 						</div>
@@ -90,8 +79,8 @@
 			   			<div class="row">
 				   			<div class="col-md-8 col-sm-12 col-md-offset-2 slider-text">
 				   				<div class="slider-text-inner text-center">
-				   					<h1>Perl vs. Other Programming Languages</h1>
-				   					<p style="color:white">By Nori Natsuhara</p>
+				   					<h1>Recursion Example</h1>
+				   					<p style="color:white">By Colton Hix</p>
 				   				</div>
 				   			</div>
 				   		</div>
@@ -99,85 +88,42 @@
 			   	</li>
 			  	</ul>
 		  	</div>
-		</aside>
+        </aside>
 
 		<div id="colorlib-about" class="colorlib-light-grey">
 			<div class="container">
 				<div class="row row-pb-md">
-					<div class="col-md-10 col-md-offset-1 text-center">
+					<div class="col-md-10 col-md-offset-1 text-left">
 						<div class="about-wrap">
 							<div class="heading-2">
-								<h2>Perl vs. Python vs. Java</h2>
-							</div>
-							<table border = "1">
-								<thead>
-									<tr>
-										<td align="center" style="width: 250px;">Feature</td>
-										<td align="center" style="width: 250px;">Perl</td>
-										<td align="center" style="width: 250px;">Python</td>
-										<td align="center" style="width: 250px;">Java</td>
-									</tr>
-								</thead>
+                            </div>
+              <p>This program is a simple recursive program to show Perl supports recursion. It calculates a factorial of an input number.</p>
+									<h2><a href="recursion.pl">recursion.pl</a></h2>
+							<pre style="white-space:pre-wrap">
+use strict;
+use warnings;
 
-								<tbody>
-									<tr>
-										<td>Main Focus</td>
-										<td>file scanning and parsing and report generation</td>
-										<td>object-oriented programming and design of data structures</td>
-										<td>app development, software tools, and big data technology</td>
-									</tr>
+sub fact {
+	my $x = $_[0];
+	if($x == 0) {
+		return 1;
+	} else {
+		return $x * fact($x-1);
+	}
+}
+my $z = <STDIN>;
 
-									<tr>
-										<td>Object-Oriented?</td>
-										<td>yes</td>
-										<td>yes</td>
-										<td>yes</td>
-									</tr>
-
-									<tr>
-										<td>High vs Low level</td>
-										<td>high-level, variable types are determined at runtime</td>
-										<td>high-level, variable types are determined at runtime</td>
-										<td>low-level, variable types are determined at compile time</td>
-									</tr>
-
-									<tr>
-										<td>Typing Discipline</td>
-										<td>Dynamically Typed</td>
-										<td>Dynamically Typed</td>
-										<td>Statically Typed</td>
-									</tr>
-
-									<tr>
-										<td>End of Statement and Block Markers</td>
-										<td>semicolons (;) are used to mark the end of a statement and curly braces, {}, are used to mark the beginning and end of blocks</td>
-										<td>end of statements are separated by whitespace and blocks are marked by tabs/indentations</td>
-										<td>semicolons (;) are used to mark the end of a statement and curly braces, {}, are used to mark the beginning and end of blocks</td>
-									</tr>
-
-									<tr>
-										<td>Comments and Documentation</td>
-										<td># for inline comments and =...=cut for documentation</td>
-										<td># for inline comments and """....""" for documentation</td>
-										<td>// for inline comments and /**...*/ for documentation</td>
-									</tr>
-								</tbody>
-
-							</table>
-							&nbsp;
-							<br>
-							<span class="btn-out"><a href="examples.html"><span style="background-color: #0073a1">Examples <i class="icon-arrow-right3"></i></span></a></span>
-
-							</div>
+print fact($z),"\n";
+</pre>
+</div>
+							<p>Run this program using the command:  perl recursion.pl</p>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 
-
-
-
-		<footer id="colorlib-footer">
+        <footer id="colorlib-footer">
 			<div class="container">
 				<div class="row row-pb-md">
 					<div class="col-md-4"></div>
@@ -186,7 +132,6 @@
 						<p class="text-center">Colton Hix &bull; Nori Natsuhara &bull; Brig Lowell</p>
 					</div>
 <div class="col-md-4"></div>
-
 				</div>
 			</div>
 			<div class="copy">
