@@ -7,7 +7,9 @@ use Text::CSV;
 print "Please type a file name: ";
 #have a set file name not stdin
 #use a csv file type: song title | song length | artist | album
-my $filename = <STDIN>;
+
+#I changed this to the first argument for faster testing
+my $filename = $ARGV[0];
 chomp $filename;
 
 #Initializes csv module.
@@ -57,6 +59,26 @@ sub searchType {
 #get boundaries of what you are searching for
     # all titles/artists/albums that start with a/contain 'the'
 sub titleSearch {
+  #grab the (first) parameter to this function
+  my $title = lc shift;
+  chomp $title;
+  #skips the header row
+  my $dummy = <$fh>;
+  while(my $row = <$fh>) {
+    #only continue if the line can be parsed
+    if ($csv->parse($row)) {
+      my @vals = $csv->fields();
+      #grab the first field (title)
+      my $test = lc $vals[0];
+      chomp $test;
+      #check if it contains the parameter (not matches)
+      if(index($test,$title) != -1) {
+        print "$row\n";
+      }
+  } else {
+      warn "Line could not be parsed: $row\n $.";
+  }
+      }
 
 }
 
@@ -76,18 +98,5 @@ sub genreSearch {
 
 }
 
-#skips the header row
-my $dummy = <$fh>;
-while(my $row = <$fh>){
-  if ($csv->parse($row)) {
-    my @vals = $csv->fields();
-
-    foreach(@vals) {
-      print "$_\n";
-    }
-} else {
-    warn "Line could not be parsed: $row\n $.";
-}
-    }
-
+searchType();
 close($fh);
