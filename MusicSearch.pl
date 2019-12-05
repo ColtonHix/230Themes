@@ -18,17 +18,17 @@ open(FH, '<:encoding(utf8)', $filename) or die $!;
 #get what section you are search through
     #ex. title/song title/song, length/time/song length, album, artist
 sub searchType {
-    print "\nWhat do you want to search by? :";
+    print "\nWhat do you want to search by: title, time, album, artist, or genre? :";
     my $searchParameter = <STDIN>;
     $searchParameter = lc $searchParameter;
 
     if ($searchParameter =~ m/title/) {
-        print "What song do you want to search for? : ";
+        print "What song title do you want to search for? : ";
         my $title = <STDIN>;
         titleSearch($title);
     
     } elsif ($searchParameter =~ m/time/) {
-        print "How long do you want the songs to be? : ";
+        print "How long do you want the songs to be in minutes? : ";
         my $timeframe = <STDIN>;
         timeSearch($timeframe);
     
@@ -79,6 +79,7 @@ sub titleSearch {
       }
 }
 
+# searches for titles less than or equal to the time in minutes input
 sub timeSearch {
     my $time = lc shift;
     chomp $time;
@@ -97,6 +98,7 @@ sub timeSearch {
     }
 }
 
+# searches for albums containing the input
 sub albumSearch {
     my $album = lc shift;
     chomp $album;
@@ -115,6 +117,7 @@ sub albumSearch {
     }
 }
 
+# searches for artists containing the input
 sub artistSearch {
     my $artist = lc shift;
     chomp $artist;
@@ -133,6 +136,7 @@ sub artistSearch {
     }
 }
 
+# searches genres for songs with wanted genre
 sub genreSearch {
     my $genre = lc shift;
     chomp $genre;
