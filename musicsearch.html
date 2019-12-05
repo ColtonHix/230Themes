@@ -3,7 +3,7 @@
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Recursion Example</title>
+	<title>Music Searching</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -79,8 +79,8 @@
 			   			<div class="row">
 				   			<div class="col-md-8 col-sm-12 col-md-offset-2 slider-text">
 				   				<div class="slider-text-inner text-center">
-				   					<h1>Recursion Example</h1>
-				   					<p style="color:white">By Colton Hix</p>
+				   					<h1>Music Searching</h1>
+				   					<p style="color:white">By Team Halibut</p>
 				   				</div>
 				   			</div>
 				   		</div>
@@ -97,23 +97,166 @@
 						<div class="about-wrap">
 							<div class="heading-2">
                             </div>
-              <p>This program is a simple recursive program to show Perl supports recursion. It calculates a factorial of an input number.</p>
-									<h2><a href="recursion.pl">recursion.pl</a></h2>
+              <p>This program reads through a csv of songs, and returns results based off what you searched for (text contains, not matches). It takes advantage of the Perl communities modules, and uses a CSV parsing module.</p>
+									<h2><a href="MusicSearch.pl">musicsearch.pl</a></h2>
 							<pre style="white-space:pre-wrap">
-use strict;
+#!/usr/bin/perl
 use warnings;
+use strict;
+use lib "Text";
+use Text::CSV;
 
-sub fact {
-	my $x = $_[0];
-	if($x == 0) {
-		return 1;
-	} else {
-		return $x * fact($x-1);
-	}
+#print "Please type a file name: ";
+#have a set file name not stdin
+#use a csv file type: song title | song length | artist | album
+my $filename = "your_top_songs_2017.csv";
+chomp $filename;
+
+#initializes csv module
+my $csv = Text::CSV-&gt;new({ sep_char =&gt; ',' });
+
+open(FH, '&lt;:encoding(utf8)', $filename) or die $!;
+
+#get what section you are search through
+    #ex. title/song title/song, length/time/song length, album, artist
+sub searchType {
+    print "\nWhat do you want to search by? :";
+    my $searchParameter = &lt;STDIN&gt;;
+    $searchParameter = lc $searchParameter;
+
+    if ($searchParameter =~ m/title/) {
+        print "What song do you want to search for? : ";
+        my $title = &lt;STDIN&gt;;
+        titleSearch($title);
+
+    } elsif ($searchParameter =~ m/time/) {
+        print "How long do you want the songs to be? : ";
+        my $timeframe = &lt;STDIN&gt;;
+        timeSearch($timeframe);
+
+    } elsif ($searchParameter =~ m/album/) {
+        print "What album are you searching for? : ";
+        my $album = &lt;STDIN&gt;;
+        albumSearch($album);
+
+    } elsif ($searchParameter =~ m/artist/) {
+        print "What artist are you looking for? : ";
+        my $artist = &lt;STDIN&gt;;
+        artistSearch($artist);
+
+    } elsif ($searchParameter =~ m/genre/) {
+        print "What genre are you looking for? : ";
+        my $genre = &lt;STDIN&gt;;
+        genreSearch($genre);
+
+    }else {
+        print "Invalid parameter\n";
+        print "ex. title, time, album, artist, genre\n";
+        searchType();
+    }
 }
-my $z = <STDIN>;
 
-print fact($z),"\n";
+#get boundaries of what you are searching for
+    # all titles/artists/albums that start with a/contain 'the'
+sub titleSearch {
+  #grab the (first) parameter to this function
+  my $title = lc shift;
+  chomp $title;
+  #skips the header row
+  my $dummy = &lt;FH&gt;;
+  while(my $row = &lt;FH&gt;) {
+    #only continue if the line can be parsed
+    if ($csv-&gt;parse($row)) {
+      my @vals = $csv-&gt;fields();
+      #grab the first field (title)
+      my $test = lc $vals[0];
+      chomp $test;
+      #check if it contains the parameter (not matches)
+      if(index($test,$title) != -1) {
+        print "$row\n";
+      }
+  } else {
+      warn "Line could not be parsed: $row\n $.";
+  }
+      }
+}
+
+sub timeSearch {
+    my $time = lc shift;
+    chomp $time;
+    my $dummy = &lt;FH&gt;;
+    while (my $row = &lt;FH&gt;) {
+        if ($csv-&gt;parse($row)) {
+            my @vals = $csv-&gt;fields();
+            my $test = lc $vals[3];
+            chomp $test;
+            if($test &lt;= $time) {
+                print "$row\n";
+            }
+        } else {
+            warn "Line could not be parsed: $row\n $.";
+        }
+    }
+}
+
+sub albumSearch {
+    my $album = lc shift;
+    chomp $album;
+    my $dummy = &lt;FH&gt;;
+    while (my $row = &lt;FH&gt;) {
+        if ($csv-&gt;parse($row)) {
+            my @vals = $csv-&gt;fields();
+            my $test = lc $vals[2];
+            chomp $test;
+            if(index($test,$album) != -1) {
+                print "$row\n";
+            }
+        } else {
+            warn "Line could not be parsed: $row\n $.";
+        }
+    }
+}
+
+sub artistSearch {
+    my $artist = lc shift;
+    chomp $artist;
+    my $dummy = &lt;FH&gt;;
+    while (my $row = &lt;FH&gt;) {
+        if ($csv-&gt;parse($row)) {
+            my @vals = $csv-&gt;fields();
+            my $test = lc $vals[1];
+            chomp $test;
+            if(index($test,$artist) != -1) {
+                print "$row\n";
+            }
+        } else {
+            warn "Line could not be parsed: $row\n $.";
+        }
+    }
+}
+
+sub genreSearch {
+    my $genre = lc shift;
+    chomp $genre;
+    my $dummy = &lt;FH&gt;;
+    while (my $row = &lt;FH&gt;) {
+        if ($csv-&gt;parse($row)) {
+            my @vals = $csv-&gt;fields();
+            my $test = lc $vals[4];
+            chomp $test;
+            if(index($test,$genre) != -1) {
+                print "$row\n";
+            }
+        } else {
+            warn "Line could not be parsed: $row\n $.";
+        }
+    }
+}
+
+searchType();
+
+close(FH);
+
 </pre>
 </div>
 							<p>Run this program using the command:  perl recursion.pl</p>
